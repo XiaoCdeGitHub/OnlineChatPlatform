@@ -82,8 +82,10 @@ public class MyWebSocket {
             chatMessage.setSendTime(sendTime);
             String name = userInfoServicesI.getUserInfoById(Math.toIntExact(chatMessage.getReceiveUserId())).getName();
             chatMessage.setReceiveUserName(name);
+            String avatar = userInfoServicesI.getUserInfoById(Math.toIntExact(chatMessage.getSendUserId())).getAvatar();
+            chatMessage.setSendUserAvatar(avatar);
             chatMessageService.saveChatMessage(chatMessage); // 将ChatMessage对象存入数据库中
-            broadcast(message);
+
 
         } catch (IOException e) {
             e.printStackTrace();

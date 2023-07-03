@@ -1,6 +1,8 @@
 export default {
   state: {
-    chatUser: {},
+    chatUser: {
+      
+    },
   },
   mutations: {
     changeUser(state, val) {

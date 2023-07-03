@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/chat")
+@CrossOrigin
 public class ChatController {
 
   private final ChatMessageServiceImpl chatMessageServiceImpl;
@@ -19,7 +20,7 @@ public class ChatController {
     this.chatMessageServiceImpl = chatMessageServiceImpl;
   }
 
-  @GetMapping("/chat")
+  @GetMapping("/getChatHistory")
   public List<ChatMessage> getChatHistory(@RequestParam("sendUserId") Long sendUserId, @RequestParam("receiveUserId") Long receiveUserId) {
     return chatMessageServiceImpl.getChatHistory(sendUserId, receiveUserId);
   }

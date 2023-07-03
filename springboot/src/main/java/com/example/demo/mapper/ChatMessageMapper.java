@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ChatMessageMapper {
 
-    List<ChatMessage> getChatHistory(Long senderId, Long receiverId);
+    List<ChatMessage> getChatHistory(Long sendUserId, Long receiveUserId);
 
     void insertChatMessage(ChatMessage chatMessage);
 

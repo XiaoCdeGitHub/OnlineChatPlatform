@@ -8,8 +8,11 @@
         <div class="chat-name-box">{{ $store.state.chat.chatUser.name }}</div>
       </div>
       <div>
+        <div>
+          <div class="get-chat-history" @click="getChatHistory">获取历史聊天记录</div>
+        </div>
         <div class="chat-main-box">
-          <chat-item :msg="item" v-for="item in messageList"></chat-item>
+          <chat-item :msg="item" v-for="item in messageList" ></chat-item>
         </div>
       </div>
       <div class="chat-input-box">
@@ -29,13 +32,28 @@
 <script>
 import ChatItem from "./ChatItem.vue";
 export default {
+  created(){
+    /* let userInfo = this.$store.state.user.userMessage;
+      console.log(userInfo);
+      let obj = {
+        sendUserName: userInfo.name,
+        sendUserAvatar: userInfo.avatar,
+        receiveUserId: this.$store.state.chat.chatUser.userId,
+        sendUserId: userInfo.userId,
+        sendContent: this.$refs.chatInput.value,
+      };
+      this.messageList.push(obj); */
+
+  },
   mounted() {
-    console.log(this.$store.state.chat);
+    console.log('测试一下这个',this.$store.state.chat.chatUser.userId != undefined);
     this.conectWebSocket();
+    
   },
   computed: {
     showChatBox() {
       return this.$store.state.chat.chatUser.userId != undefined;
+      // return this.$store.state.hello.userChatting;
     },
     getChatState() {
       return this.$store.state.chat.chatUser.userId;
@@ -79,7 +97,7 @@ export default {
         let message = JSON.parse(event.data);
         if (message.receiveUserId == that.$store.state.user.userMessage.userId) {
           that.messageList.push(message);
-          console.log(that.messageList);
+          console.log("我是that.messageList啦啦啦啦啦",that.messageList);
         }
       };
       //连接关闭的回调方法
@@ -103,8 +121,30 @@ export default {
       };
       this.websocket.send(JSON.stringify(obj));
       this.messageList.push(obj);
+      console.log(this.messageList);
       this.$refs.chatInput.value = "";
     },
+    getChatHistory(){
+      let sendUserId = this.$store.state.user.userMessage.userId;
+      let receiveUserId = this.$store.state.chat.chatUser.userId;
+      this.$api.chatApi.getChatHistory(sendUserId,receiveUserId).then((res) => {
+      console.log(res);
+     res.forEach(i => {
+      let historyChatObj = {
+  receiveUserId: i.receiveUserId,
+  sendUserId: i.sendUserId,
+  sendUserAvatar: i.sendUserAvatar,
+  sendContent: i.sendContent,
+  sendUserName: i.sendUserName
+}
+console.log("historyChatObj",historyChatObj);
+      this.messageList.push(historyChatObj);
+      });
+      console.log(this.messageList);
+    }).catch((err) => {
+      console.log(err);
+    });
+    }
   },
   data() {
     return {
@@ -183,6 +223,15 @@ export default {
     line-height: 35px;
     color: #5fc160;
     border-radius: 5px;
+  }
+  .get-chat-history{
+    width: 20px;
+    height: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    color: aquamarine;
+    font-size: 8px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 import axios from "./http";
 
-function getChatHistory() {
-  return axios.get("/getChatHistory");
+function getChatHistory(sendUserId,receiveUserId) {
+  return axios.get("/chat/getChatHistory?sendUserId=" + sendUserId + "&receiveUserId=" + receiveUserId);
 }
 
 function getmsg(params) {
@@ -11,7 +11,7 @@ function getmsg(params) {
 
 export default {
   //在这里导出所有函数
-  getImg,
+  getChatHistory,
   getmsg,
 };
 

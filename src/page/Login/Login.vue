@@ -59,6 +59,7 @@ export default {
               type: "success",
             });
             this.$store.commit("user/changeInfo", res[0]);
+            console.log('我是res[0]啦啦啦啦啦',res[0]);
             this.$router.push("/chat");
           }
         },

@@ -19,8 +19,8 @@ public class ChatMessageServiceImpl implements ChatMessageService {
 
 
     @Override
-    public List<ChatMessage> getChatHistory(Long senderId, Long receiverId) {
-        return (List<ChatMessage>) chatMessageMapper.getChatHistory(senderId, receiverId);
+    public List<ChatMessage> getChatHistory(Long sendUserId, Long receiveUserId) {
+        return chatMessageMapper.getChatHistory(sendUserId, receiveUserId);
     }
 
     @Override

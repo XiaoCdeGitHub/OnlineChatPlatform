@@ -1,7 +1,8 @@
 <template>
   <div style="display: flex">
-    <chat-list></chat-list>
+      <chat-list></chat-list> 
     <chat-content></chat-content>
+    
   </div>
 </template>
 
