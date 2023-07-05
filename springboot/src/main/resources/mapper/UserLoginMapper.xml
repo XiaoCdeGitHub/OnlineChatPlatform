@@ -9,7 +9,7 @@
     </select>
 
     <insert id="add" parameterType="com.example.demo.pojo.UserLogin">
-        insert into login_db (userId,email,password) values (0,#{email},#{password})
+        insert into login_db (email,password) values (#{email},#{password})
     </insert>
     <insert id="addUser" parameterType="com.example.demo.pojo.UserLogin">
         insert into user_db (userId,email) select userId,email from login_db where email=#{email} and password=#{password};

@@ -9,7 +9,7 @@
       </div>
       <div>
         <div>
-          <div class="get-chat-history" @click="getChatHistory">获取历史聊天记录</div>
+          <div class="get-chat-history" @click="getChatHistory" v-if="chatHistoryBtn">获取历史聊天记录</div>
         </div>
         <div class="chat-main-box">
           <chat-item :msg="item" v-for="item in messageList" ></chat-item>
@@ -33,6 +33,7 @@
 import ChatItem from "./ChatItem.vue";
 export default {
   created(){
+    this. chatHistoryBtn = true;
     /* let userInfo = this.$store.state.user.userMessage;
       console.log(userInfo);
       let obj = {
@@ -46,6 +47,7 @@ export default {
 
   },
   mounted() {
+    this. chatHistoryBtn = true;
     console.log('测试一下这个',this.$store.state.chat.chatUser.userId != undefined);
     this.conectWebSocket();
     
@@ -125,6 +127,7 @@ export default {
       this.$refs.chatInput.value = "";
     },
     getChatHistory(){
+      this. chatHistoryBtn = false;
       let sendUserId = this.$store.state.user.userMessage.userId;
       let receiveUserId = this.$store.state.chat.chatUser.userId;
       this.$api.chatApi.getChatHistory(sendUserId,receiveUserId).then((res) => {
@@ -159,6 +162,7 @@ console.log("historyChatObj",historyChatObj);
           sendContent: "嘤嘤嘤", */
         },
       ],
+      chatHistoryBtn:true
     };
   },
 };
