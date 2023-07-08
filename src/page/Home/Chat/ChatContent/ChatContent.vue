@@ -9,7 +9,7 @@
       </div>
       <div>
         <div>
-          <div class="get-chat-history" @click="getChatHistory" v-if="chatHistoryBtn">获取历史聊天记录</div>
+          <div class="history" @click="getChatHistory" v-if="chatHistoryBtn">获取历史聊天记录</div>
         </div>
         <div class="chat-main-box">
           <chat-item :msg="item" v-for="item in messageList" ></chat-item>
@@ -228,14 +228,14 @@ console.log("historyChatObj",historyChatObj);
     color: #5fc160;
     border-radius: 5px;
   }
-  .get-chat-history{
-    width: 20px;
-    height: 8px;
+  
+}.history{
+    width: 100px;
+    height: 18px;
     margin-left: auto;
     margin-right: auto;
-    background-color: red;
-    color: aquamarine;
-    font-size: 8px;
+    // background-color: red;
+    color: rgb(2, 174, 243);
+    font-size: 12px;
   }
-}
 </style>
