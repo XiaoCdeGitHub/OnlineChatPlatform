@@ -1,0 +1,24 @@
+spring:
+#  mvc:
+#    static-path-pattern: /static/**
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wechat?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: zsydmn666.
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+#      location: resources\static\image\
+      #location: C:\Users\yu\Desktop\OnlineChatPlatformSystem\springboot\src\main\resources\static\image\
+#  web:
+#    resources:
+#      static-locations: classpath:/static/
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+#file-save-path: C:\Users\yu\Desktop\OnlineChatPlatformSystem\springboot\src\main\resources\static\image\
+#file-save-path: main\resources\static\image\
+
+
